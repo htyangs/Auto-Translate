@@ -15,8 +15,8 @@
 * F8 : 用在網站、PDF檔案或任何可以反白的文字，顯示翻譯在浮動視窗後發音
 * F9 : 反白想要翻譯的單字後會自動儲存翻譯txt檔案中，作為後續復習用的單字本，txt檔案會存在與pdf2.exe同資料夾，名為vocabulary.txt
 # 可修改項目
-多國翻譯 : 本程式主要利用Google translate api，可翻譯任何特定語言到特定語言，只需要小小修改pdf2.py部分程式
-修改快速按鍵 : 只需要修改Key部分即可以修改快捷鍵 
+* 多國翻譯 : 本程式主要利用Google translate api，可翻譯任何特定語言到特定語言，只需要小小修改pdf2.py部分程式
+* 修改快速按鍵 : 只需要修改Key部分即可以修改快捷鍵 
 # Auto-Translate
 ### Automatically translate English into Chinese, with .exe package running on Windows directly and .py file.
 ### Available in all kinds of file Ex: pdf, word, txt, browser
