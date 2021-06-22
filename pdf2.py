@@ -1,7 +1,6 @@
 from tkinter.constants import X
 from pynput import keyboard,mouse
-from pynput.keyboard import Key, Controller
-from google_trans_new import google_translator  
+from pynput.keyboard import Key, Controller 
 from googletrans import Translator
 import pyperclip
 from gtts import gTTS
@@ -13,7 +12,7 @@ import tkinter as tk
 translator = Translator()
 
 def speak(text,language):
-	tts=gTTS(text, lang=language)
+	tts=gTTS(text,lang=language)
 	filename="audio1.mp3"
 	tts.save(filename)
 	playsound("audio1.mp3")
@@ -81,7 +80,9 @@ def on_release(key):
             keyboards.release('c')
         time.sleep (0.35)
         s = pyperclip.paste()   
-        speak(s,language='en')
+        lang = translator.detect(s)
+        print(lang.lang)
+        speak(s,language=lang)
         print(s)
         try:
             trans = translator.translate(s,dest="zh-tw").text #dest #lang_tgt
@@ -105,6 +106,8 @@ def on_release(key):
             keyboards.release('c')
         time.sleep (0.15)
         s = pyperclip.paste()  
+        lang = translator.detect(s).lang
+        
         try:
             trans = translator.translate(s,dest="zh-tw").text #dest #lang_tgt
     
@@ -124,7 +127,7 @@ def on_release(key):
 
             root.after(1500+len(trans)*80, lambda: root.destroy())
             root.mainloop()
-            speak(s,language='en')
+            speak(s,language=lang)
         #speak(trans,language='zh')
         except:
             pass
