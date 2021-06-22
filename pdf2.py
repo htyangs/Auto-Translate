@@ -73,7 +73,7 @@ def on_release(key):
         keyboards.press(Key.ctrl_l.value)
         keyboards.release(Key.ctrl_l.value)   
 
-    if(key == keyboard.Key.f5): # for save file to txt
+    if(key == keyboard.Key.f9): # for save file to txt
         print('good')
         keyboards = Controller()
         with keyboards.pressed(Key.ctrl.value):
