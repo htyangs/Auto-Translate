@@ -1,4 +1,5 @@
-from pynput import keyboard
+from tkinter.constants import X
+from pynput import keyboard,mouse
 from pynput.keyboard import Key, Controller
 from google_trans_new import google_translator  
 from googletrans import Translator
@@ -6,21 +7,16 @@ import pyperclip
 from gtts import gTTS
 import time
 import os
-import pygame
+from playsound import playsound
 import tkinter as tk
-translator = Translator()
 
+translator = Translator()
 
 def speak(text,language):
 	tts=gTTS(text, lang=language)
 	filename="audio1.mp3"
 	tts.save(filename)
-	pygame.mixer.init()
-	pygame.mixer.music.load("audio1.mp3")
-	pygame.mixer.music.play()
-	while pygame.mixer.music.get_busy():
-		pygame.time.Clock().tick(10)
-	pygame.mixer.quit()
+	playsound("audio1.mp3")
 	os.remove(filename)
 def on_press(key):
     try:
@@ -33,7 +29,7 @@ def on_press(key):
 
 def on_release(key):
     '鬆開按鍵時執行。'
-    if(key == keyboard.Key.f4):
+    if(key == keyboard.Key.f4): #for pdf file, use copy v to paste translation
         print('good')
         keyboards = Controller()
 
@@ -47,17 +43,14 @@ def on_release(key):
         trans = translator.translate(s,dest="zh-tw").text #dest #lang_tgt
         time.sleep (0.7+len(s)/100)
         pyperclip.copy(trans)
-        
+    
         print(trans)
-        #pyperclip.copy(trans)
         print('<ctrl>+<shift> pressed')
-
-        #time.sleep (0.35)
         with keyboards.pressed(Key.ctrl.value):
             keyboards.press('v')
             keyboards.release('v')
         time.sleep (0.55)
-    if(key == keyboard.Key.f2):
+    if(key == keyboard.Key.f2): # for word file or txt file, it may insert translation to the loc next to word 
         print('good')
         keyboards = Controller()
         with keyboards.pressed(Key.ctrl.value):
@@ -72,16 +65,15 @@ def on_release(key):
         time.sleep (0.4+len(s)/100)
         pyperclip.copy('( '+trans+' )')
         print(trans)
-        #pyperclip.copy(trans)
         print('<ctrl>+<shift> pressed')
-        #time.sleep (0.35)
         with keyboards.pressed(Key.ctrl.value):
             keyboards.press('v')
             keyboards.release('v')
         time.sleep (0.35)
         keyboards.press(Key.ctrl_l.value)
-        keyboards.release(Key.ctrl_l.value)     
-    if(key == keyboard.Key.f5):
+        keyboards.release(Key.ctrl_l.value)   
+
+    if(key == keyboard.Key.f5): # for save file to txt
         print('good')
         keyboards = Controller()
         with keyboards.pressed(Key.ctrl.value):
@@ -104,39 +96,99 @@ def on_release(key):
             time.sleep (0.35)
         except:
             pass
-    if(key == keyboard.Key.f8):
+    if(key == keyboard.Key.f8 or key == keyboard.Key.f6 ): #display a window and speak
         print('good')
         
-        window = tk.Tk()
-        window.attributes('-topmost', 1)
         keyboards = Controller()
         with keyboards.pressed(Key.ctrl.value):
             keyboards.press('c')
             keyboards.release('c')
-        time.sleep (0.35)
+        time.sleep (0.15)
         s = pyperclip.paste()  
-        trans = translator.translate(s,dest="zh-tw").text #dest #lang_tgt
-        time.sleep (0.4)
-        '''
-        window.geometry("300x100+250+150")
-        label = tk.Label(window,                 # 文字標示所在視窗
-                        text = s+trans,  # 顯示文字
-                                #  背景顏色
-                        font = ('Arial', 12),   # 字型與大小
-                        width = 15, height = 2) # 文字標示尺寸   
-        label.pack()
-        window.mainloop()
-         '''
-        print(s)
-        speak(s,language='en')
-        speak(trans,language='zh')
+        try:
+            trans = translator.translate(s,dest="zh-tw").text #dest #lang_tgt
+    
+            new_line = 15
+            for i in range(int(len(trans)/10)):
+                trans=trans[:(i+1)*new_line]+'\n'+trans[(i+1)*new_line:]
+            print(trans)
+            root = tk.Tk()
+            label = tk.Label(root,              # 文字標示所在視窗
+                            text = trans,  # 顯示文字
+                        
+                            font = ('Arial', 12),   # 字型與大小
+                            width = 30, height = int(4+int(len(trans))/15)) # 文字標示尺寸  
+            label.pack()
+            root.wm_attributes('-topmost',1)
+            print(s)
+
+            root.after(1500+len(trans)*80, lambda: root.destroy())
+            root.mainloop()
+            speak(s,language='en')
+        #speak(trans,language='zh')
+        except:
+            pass
        
     if key == keyboard.Key.esc:
         # Stop listener
         return False
-
 # Collect events until released
 with keyboard.Listener(
         on_press=on_press,
         on_release=on_release) as listener:
     listener.join()  
+    '''
+def on_move(x, y):
+    pass
+x_pos=0
+y_pos=0
+def on_click(x, y, button, pressed):
+    global x_pos,y_pos
+    if(pressed==False and (x_pos!=x or y_pos !=y)):
+        print('good')
+        previous = pyperclip.paste()
+        keyboards = Controller()
+        with keyboards.pressed(Key.ctrl.value):
+            keyboards.press('c')
+            keyboards.release('c')
+        time.sleep (0.15)
+        after = pyperclip.paste()
+        if(after!=previous):
+            try:
+                trans = translator.translate(after,dest="zh-tw").text #dest #lang_tgt
+                new_line = 15
+                for i in range(int(len(trans)/10)):
+                    trans=trans[:(i+1)*new_line]+'\n'+trans[(i+1)*new_line:]
+                print(trans)
+                root = tk.Tk()
+                label = tk.Label(root,              # 文字標示所在視窗
+                                text = trans,  # 顯示文字
+                            
+                                font = ('Arial', 12),   # 字型與大小
+                                width = 30, height = int(4+int(len(trans))/15)) # 文字標示尺寸  
+                label.pack()
+                root.wm_attributes('-topmost',1)
+                print(s)
+                root.after(1500+len(trans)*80, lambda: root.destroy())
+                root.mainloop()
+                #speak(s,language='en')
+            #speak(trans,language='zh')
+            except:
+                pass    
+    x_pos = x
+    y_pos = y
+
+    print('{0} at {1}'.format(
+        'Pressed' if pressed else 'Released',
+        (x, y)))
+    
+def on_scroll(x, y, dx, dy):
+    pass
+
+# Collect events until released
+with mouse.Listener(
+        on_move=on_move,
+        on_click=on_click,
+        on_scroll=on_scroll) as listener:
+    listener.join()
+'''
