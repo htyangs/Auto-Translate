@@ -12,7 +12,8 @@
 ### Mac/Linux
 ##### 方法一、 於anaconda建立python 3.7環境，在下載資料夾輸入 pip install -r requirements.txt，運行pdf2.py(需修改Key，比如將crtl 換到 cmd等等)
 # 主要按鍵
-* F1 or F3 : 用在網站、PDF檔案或任何可以反白的文字，顯示翻譯在浮動視窗 (F1:網站/F3:Adobe reader pdf)配合非定義過的快捷鍵
+由於某些快捷鍵已經被程式定義，因此會有兩個可用按鍵，可自行選用適合的
+* F1 or F3 : 用在網站、PDF檔案或任何可以反白的文字，顯示翻譯在浮動視窗 (F1:網站/F3:Adobe reader pdf)
 * F2 : 用在Word檔案、txt檔案、onenote等可以輸入文字的軟體，反白要翻譯的部分後會自動插入翻譯在單字後面
 * F4 : 用在不能輸入文字，但可以貼上文字的軟體，比如Drawboard，與F2類似但是利用貼上作為輸出
 * F6 or F8 : 同F1，在顯示完後發音 (兩個按鍵為了配合非定義過的快捷鍵)
