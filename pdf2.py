@@ -5,7 +5,6 @@ For different system user, please motify the key such as crtl to cmd for Mac use
 If you have any problems, please contact me: antony880910@gmail.com or find the new version on github https://github.com/alwaysmle/Auto-Translate
 Thanks and enjoy
 '''
-from tkinter.constants import X
 from pynput import keyboard,mouse
 from pynput.keyboard import Key, Controller 
 from googletrans import Translator
@@ -15,7 +14,6 @@ import time
 import os
 from playsound import playsound
 import tkinter as tk
-import re
 translator = Translator()
 
 def speak(text,language): #speak sounds
