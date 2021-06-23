@@ -1,3 +1,10 @@
+'''
+This program aims to translate any language into chinese
+With special key pressed, one can get the translation immediately
+For different system user, please motify the key such as crtl to cmd for Mac users
+If you have any problems, please contact me: antony880910@gmail.com or find the new version on github https://github.com/alwaysmle/Auto-Translate
+Thanks and enjoy
+'''
 from tkinter.constants import X
 from pynput import keyboard,mouse
 from pynput.keyboard import Key, Controller 
