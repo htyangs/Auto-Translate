@@ -138,7 +138,7 @@ def on_release(key): # detect release of keyboard
         #speak(trans,language='zh')
         except:
             pass
-    if(key == keyboard.Key.f1 ): #display a window and speak
+    if(key == keyboard.Key.f1 or key == keyboard.Key.f3): #display a window and speak
         print('good')
         
         keyboards = Controller()
