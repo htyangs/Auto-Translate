@@ -1,2 +1,4 @@
 
 word 單詞
+word 單詞
+Automate 自動化

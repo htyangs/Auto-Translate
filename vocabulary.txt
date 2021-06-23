@@ -1,0 +1,5 @@
+
+requirements 要求
+install  安裝
+translate 翻譯
+problems 問題

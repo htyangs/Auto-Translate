@@ -15,7 +15,7 @@ import time
 import os
 from playsound import playsound
 import tkinter as tk
-
+import re
 translator = Translator()
 
 def speak(text,language): #speak sounds
@@ -43,7 +43,7 @@ def on_release(key): # detect release of keyboard
             keyboards.press('c')
             keyboards.release('c')
         time.sleep (0.35)
-        s = pyperclip.paste()
+        s = pyperclip.paste().replace('\n', '').replace('\r', '')  
         print(len(s))
         print(s)
         trans = translator.translate(s,dest="zh-tw").text #dest #lang_tgt
@@ -63,7 +63,7 @@ def on_release(key): # detect release of keyboard
             keyboards.press('c')
             keyboards.release('c')
         time.sleep (0.35)
-        s = pyperclip.paste()
+        s = pyperclip.paste().replace('\n', '').replace('\r', '')   
         keyboards.press(Key.right)
         keyboards.release(Key.right)    
         print(s)
@@ -86,7 +86,7 @@ def on_release(key): # detect release of keyboard
             keyboards.press('c')
             keyboards.release('c')
         time.sleep (0.35)
-        s = pyperclip.paste()   
+        s = pyperclip.paste().replace('\n', '').replace('\r', '')   
         lang = translator.detect(s).lang
 
         speak(s,language=lang)
@@ -112,12 +112,12 @@ def on_release(key): # detect release of keyboard
             keyboards.press('c')
             keyboards.release('c')
         time.sleep (0.15)
-        s = pyperclip.paste()  
+        s = pyperclip.paste()
+        s = s.replace('\n', '').replace('\r', '')
         lang = translator.detect(s).lang
         
         try:
             trans = translator.translate(s,dest="zh-tw").text #dest #lang_tgt
-    
             new_line = 15
             for i in range(int(len(trans)/10)):
                 trans=trans[:(i+1)*new_line]+'\n'+trans[(i+1)*new_line:]
@@ -138,7 +138,38 @@ def on_release(key): # detect release of keyboard
         #speak(trans,language='zh')
         except:
             pass
-       
+    if(key == keyboard.Key.f1 ): #display a window and speak
+        print('good')
+        
+        keyboards = Controller()
+        with keyboards.pressed(Key.ctrl.value):
+            keyboards.press('c')
+            keyboards.release('c')
+        time.sleep (0.15)
+        s = pyperclip.paste()
+        s = s.replace('\n', '').replace('\r', '')
+        lang = translator.detect(s).lang
+        
+        try:
+            trans = translator.translate(s,dest="zh-tw").text #dest #lang_tgt
+            new_line = 15
+            for i in range(int(len(trans)/10)):
+                trans=trans[:(i+1)*new_line]+'\n'+trans[(i+1)*new_line:]
+            print(trans)
+            root = tk.Tk() #create a window
+            label = tk.Label(root,              # 文字標示所在視窗
+                            text = trans,  # 顯示文字
+                        
+                            font = ('Arial', 12),   # 字型與大小
+                            width = 30, height = int(4+int(len(trans))/15)) # 文字標示尺寸  
+            label.pack()
+            root.wm_attributes('-topmost',1)
+            print(s)
+            root.after(1500+len(trans)*80, lambda: root.destroy())
+            root.mainloop()
+        except:
+            pass
+
     if key == keyboard.Key.esc:
         # Stop listener
         return False
