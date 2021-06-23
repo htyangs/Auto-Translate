@@ -11,22 +11,22 @@ import tkinter as tk
 
 translator = Translator()
 
-def speak(text,language):
+def speak(text,language): #speak sounds
 	tts=gTTS(text,lang=language)
 	filename="audio1.mp3"
 	tts.save(filename)
 	playsound("audio1.mp3")
 	os.remove(filename)
-def on_press(key):
+def on_press(key): #detect press not use here
     try:
         print('alphanumeric key {0} pressed'.format(
             key.char))
     except AttributeError:
         print('special key {0} pressed'.format(
             key))
-    #通過屬性判斷按鍵類型。
 
-def on_release(key):
+
+def on_release(key): # detect release of keyboard
     '鬆開按鍵時執行。'
     if(key == keyboard.Key.f4): #for pdf file, use copy v to paste translation
         print('good')
@@ -115,7 +115,7 @@ def on_release(key):
             for i in range(int(len(trans)/10)):
                 trans=trans[:(i+1)*new_line]+'\n'+trans[(i+1)*new_line:]
             print(trans)
-            root = tk.Tk()
+            root = tk.Tk() #create a window
             label = tk.Label(root,              # 文字標示所在視窗
                             text = trans,  # 顯示文字
                         
@@ -140,6 +140,8 @@ with keyboard.Listener(
         on_press=on_press,
         on_release=on_release) as listener:
     listener.join()  
+    
+# test mouse function
     '''
 def on_move(x, y):
     pass
