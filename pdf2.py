@@ -24,7 +24,7 @@ def speak(text,language): #speak sounds
 	os.remove(filename)
 def display_word(trans):
     w = 280 # width for the Tk root
-    h = int(50+int(len(trans)*1.3) )# height for the Tk root
+    h = int(80+int(len(trans)*1.3) )# height for the Tk root
     new_line = 15
     for i in range(int(len(trans)/10)):
         trans=trans[:(i+1)*new_line]+'\n'+trans[(i+1)*new_line:]
