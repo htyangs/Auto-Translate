@@ -3,8 +3,8 @@
 * 一鍵自動查詢單字、翻譯、輸入、發音
 * 適用於網站、pdf、word、onenote等各式各樣程式
 * 可翻譯單字與段落 (英文、日文、韓文、西班牙文等等任何語言)
-* 可用於迅速查詢論文單字、英文小說，不拖累閱讀速度
-* 一鍵製作txt單字本，包含中文以及英文，用於後續複習
+* 可用於迅速查詢論文單字、外文小說，不拖累閱讀速度
+* 一鍵製作txt單字本，包含中文以及英文，用於後續單字複習
 # 安裝方法 
 ### Win 10
 ##### 方法一、 下載程式後並解壓縮，打開dist/pdf2.exe後即可以直接運行
@@ -17,7 +17,6 @@
 * F8 : 用在網站、PDF檔案或任何可以反白的文字，顯示翻譯在浮動視窗後發音
 * F9 : 反白想要翻譯的單字後會自動儲存翻譯txt檔案中，作為後續復習用的單字本，txt檔案會存在與pdf2.exe同資料夾，名為vocabulary.txt
 # 可修改項目
-* 多國翻譯 : 本程式主要利用Google translate api，可翻譯任何特定語言到特定語言，只需要小小修改pdf2.py部分程式
 * 修改快速按鍵 : 只需要修改Key部分即可以修改快捷鍵 
 # Auto-Translate
 ### Automatically translate English into Chinese, with .exe package running on Windows directly and .py file.
