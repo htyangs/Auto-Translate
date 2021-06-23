@@ -1,6 +1,2 @@
 
-sense  感覺
-Monograph 專著
-方法一、 下載程式後並解壓縮，打開dist/pdf2.exe後即可以直接運行 方法一、 下載程式後並解壓縮，打開dist/pdf2.exe後即可以直接運行
-equivalent  相等的
-Muse 沉思
+word 單詞
