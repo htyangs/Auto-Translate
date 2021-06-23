@@ -18,8 +18,9 @@
 * F4 : 用在不能輸入文字，但可以貼上文字的軟體，比如Drawboard，與F2類似但是利用貼上作為輸出
 * F6 or F8 : 同F1，在顯示完後發音 (兩個按鍵為了配合非定義過的快捷鍵)
 * F9 : 反白想要翻譯的單字後會自動儲存翻譯txt檔案中，作為後續復習用的單字本，txt檔案會存在與pdf2.exe同資料夾，名為vocabulary.txt
-# 可修改項目
-* 自定義快速按鍵 : 只需要修改Key部分即可以修改快捷鍵，修改pdf2.py檔案
+# 自行修改方法
+* 自定義快速按鍵 : 於pdf2.py檔案，修改key == keyboard.Key.f1即可以修改快捷鍵
+* 軟體打包成.exe : 利用pyinstaller對pdf2.py打包即可以形成.exe檔案 
 # Auto-Translate
 ### Automatically translate English into Chinese, with .exe package running on Windows directly and .py file.
 ### Available in all kinds of file Ex: pdf, word, txt, browser
