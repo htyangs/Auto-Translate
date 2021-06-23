@@ -8,7 +8,9 @@
 # 安裝方法 
 ### Win 10
 ##### 方法一、 下載程式後並解壓縮，打開dist/pdf2.exe後即可以直接運行
-##### 方法二、 於python環境中運行pdf2.py
+##### 方法二、 於anaconda安裝python 3.7，在下載資料夾輸入 pip install -r requirements.txt，運行pdf2.py
+### Mac/Linux
+##### 方法一、 於anaconda安裝python 3.7，在下載資料夾輸入 pip install -r requirements.txt，運行pdf2.py(需修改Key，比如將crtl 換到 cmd等等)
 # 主要按鍵
 * F2 : 用在Word檔案、txt檔案、onenote等可以輸入文字的軟體，反白要翻譯的部分後會自動插入翻譯在單字後面
 * F4 : 用在不能輸入文字，但可以貼上文字的軟體，比如Drawboard，與F2類似但是利用貼上作為輸出
