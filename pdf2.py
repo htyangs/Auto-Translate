@@ -80,8 +80,8 @@ def on_release(key):
             keyboards.release('c')
         time.sleep (0.35)
         s = pyperclip.paste()   
-        lang = translator.detect(s)
-        print(lang.lang)
+        lang = translator.detect(s).lang
+
         speak(s,language=lang)
         print(s)
         try:
