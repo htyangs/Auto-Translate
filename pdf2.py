@@ -22,6 +22,35 @@ def speak(text,language): #speak sounds
 	tts.save(filename)
 	playsound("audio1.mp3")
 	os.remove(filename)
+def display_word(trans):
+    w = 280 # width for the Tk root
+    h = int(50+int(len(trans)*1.3) )# height for the Tk root
+    new_line = 15
+    for i in range(int(len(trans)/10)):
+        trans=trans[:(i+1)*new_line]+'\n'+trans[(i+1)*new_line:]
+    trans = '\n'+'\n'+trans
+    print(trans)
+    root = tk.Tk() #create a window
+    # get screen width and height
+    ws = root.winfo_screenwidth() # width of the screen
+    hs = root.winfo_screenheight() # height of the screen
+
+    # calculate x and y coordinates for the Tk root window
+    x = (ws/5) 
+    y = (hs/5) 
+
+    # set the dimensions of the screen 
+    # and where it is placed
+    root.geometry('%dx%d+%d+%d' % (w, h, x, y))
+    label = tk.Label(root,              # 文字標示所在視窗
+                    text = trans,  # 顯示文字
+                    font = ('Arial', 12),   # 字型與大小
+                    )  
+    label.pack()
+    root.wm_attributes('-topmost',1)
+
+    root.after(1500+len(trans)*80, lambda: root.destroy())
+    root.mainloop()
 def on_press(key): #detect press not use here
     try:
         print('alphanumeric key {0} pressed'.format(
@@ -60,7 +89,7 @@ def on_release(key): # detect release of keyboard
         with keyboards.pressed(Key.ctrl.value):
             keyboards.press('c')
             keyboards.release('c')
-        time.sleep (0.35)
+        time.sleep (0.25)
         s = pyperclip.paste().replace('\n', '').replace('\r', '')   
         keyboards.press(Key.right)
         keyboards.release(Key.right)    
@@ -100,8 +129,8 @@ def on_release(key): # detect release of keyboard
             print('<ctrl>+<shift> pressed')
             #time.sleep (0.35)
             time.sleep (0.35)
-        except:
-            pass
+        except Exception as e:
+            print(e)
     if(key == keyboard.Key.f8 or key == keyboard.Key.f6 ): #display a window and speak
         print('good')
         
@@ -116,26 +145,12 @@ def on_release(key): # detect release of keyboard
         
         try:
             trans = translator.translate(s,dest="zh-tw").text #dest #lang_tgt
-            new_line = 15
-            for i in range(int(len(trans)/10)):
-                trans=trans[:(i+1)*new_line]+'\n'+trans[(i+1)*new_line:]
-            print(trans)
-            root = tk.Tk() #create a window
-            label = tk.Label(root,              # 文字標示所在視窗
-                            text = trans,  # 顯示文字
-                        
-                            font = ('Arial', 12),   # 字型與大小
-                            width = 30, height = int(4+int(len(trans))/15)) # 文字標示尺寸  
-            label.pack()
-            root.wm_attributes('-topmost',1)
-            print(s)
-
-            root.after(1500+len(trans)*80, lambda: root.destroy())
-            root.mainloop()
+            time.sleep (0.25)
+            display_word(trans) 
             speak(s,language=lang)
-        #speak(trans,language='zh')
-        except:
-            pass
+        
+        except Exception as e:
+            print(e)
     if(key == keyboard.Key.f1 or key == keyboard.Key.f3): #display a window and speak
         print('good')
         
@@ -147,26 +162,13 @@ def on_release(key): # detect release of keyboard
         s = pyperclip.paste()
         s = s.replace('\n', '').replace('\r', '')
         lang = translator.detect(s).lang
-        
+        print(s)
         try:
             trans = translator.translate(s,dest="zh-tw").text #dest #lang_tgt
-            new_line = 15
-            for i in range(int(len(trans)/10)):
-                trans=trans[:(i+1)*new_line]+'\n'+trans[(i+1)*new_line:]
-            print(trans)
-            root = tk.Tk() #create a window
-            label = tk.Label(root,              # 文字標示所在視窗
-                            text = trans,  # 顯示文字
-                        
-                            font = ('Arial', 12),   # 字型與大小
-                            width = 30, height = int(4+int(len(trans))/15)) # 文字標示尺寸  
-            label.pack()
-            root.wm_attributes('-topmost',1)
-            print(s)
-            root.after(1500+len(trans)*80, lambda: root.destroy())
-            root.mainloop()
-        except:
-            pass
+            time.sleep (0.25)
+            display_word(trans) 
+        except Exception as e:
+            print(e)
 
     if key == keyboard.Key.esc:
         # Stop listener
