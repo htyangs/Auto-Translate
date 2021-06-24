@@ -14,7 +14,17 @@ import time
 import os
 from playsound import playsound
 import tkinter as tk
+import wikipedia
 translator = Translator()
+
+def wrap_by_word(s, n):
+    '''returns a string where \\n is inserted between every n words'''
+    a = s.split()
+    ret = ''
+    for i in range(0, len(a), n):
+        ret += ' '.join(a[i:i+n]) + '\n'
+
+    return ret
 
 def speak(text,language): #speak sounds
 	tts=gTTS(text,lang=language)
@@ -22,13 +32,20 @@ def speak(text,language): #speak sounds
 	tts.save(filename)
 	playsound("audio1.mp3")
 	os.remove(filename)
-def display_word(trans):
-    w = 280 # width for the Tk root
-    h = int(80+int(len(trans)*1.3) )# height for the Tk root
-    new_line = 15
-    for i in range(int(len(trans)/10)):
-        trans=trans[:(i+1)*new_line]+'\n'+trans[(i+1)*new_line:]
-    trans = '\n'+'\n'+trans
+def display_word(trans,lang=None):
+    if (lang == 'en'):
+        w = 700 # width for the Tk root
+        h = int(80+int(len(trans)*0.3) )# height for the Tk root
+        new_line = 70
+        trans = '\n\n'+wrap_by_word(trans,10)
+        print(trans)
+    else:
+        w = 280 # width for the Tk root
+        h = int(80+int(len(trans)*1.3) )# height for the Tk root
+        new_line = 15
+        for i in range(int(len(trans)/10)):
+            trans=trans[:(i+1)*new_line]+'\n'+trans[(i+1)*new_line:]
+        trans = '\n'+'\n'+trans
     print(trans)
     root = tk.Tk() #create a window
     # get screen width and height
@@ -36,8 +53,8 @@ def display_word(trans):
     hs = root.winfo_screenheight() # height of the screen
 
     # calculate x and y coordinates for the Tk root window
-    x = (ws/5) 
-    y = (hs/5) 
+    x = (ws/100) 
+    y = (hs/100) 
 
     # set the dimensions of the screen 
     # and where it is placed
@@ -105,33 +122,7 @@ def on_release(key): # detect release of keyboard
         time.sleep (0.35)
         keyboards.press(Key.ctrl_l.value)
         keyboards.release(Key.ctrl_l.value)   
-
-    if(key == keyboard.Key.f9): # for save file to txt
-        print('good')
-        keyboards = Controller()
-        with keyboards.pressed(Key.ctrl.value):
-            keyboards.press('c')
-            keyboards.release('c')
-        time.sleep (0.35)
-        s = pyperclip.paste().replace('\n', '').replace('\r', '')   
-        lang = translator.detect(s).lang
-
-        speak(s,language=lang)
-        print(s)
-        try:
-            trans = translator.translate(s,dest="zh-tw").text #dest #lang_tgt
-            time.sleep (0.4)
-            more_lines = ['',s+" "+trans]
-            with open('vocabulary.txt', 'a') as f:
-                f.writelines('\n'.join(more_lines))
-                
-            #pyperclip.copy(trans)
-            print('<ctrl>+<shift> pressed')
-            #time.sleep (0.35)
-            time.sleep (0.35)
-        except Exception as e:
-            print(e)
-    if(key == keyboard.Key.f8 or key == keyboard.Key.f6 ): #display a window and speak
+    if(key == keyboard.Key.f5): # for word file or txt file, it may insert translation to the loc next to word 
         print('good')
         
         keyboards = Controller()
@@ -144,9 +135,70 @@ def on_release(key): # detect release of keyboard
         lang = translator.detect(s).lang
         
         try:
+            speak(s,language=lang)
+        
+        except Exception as e:
+            print(e)
+
+    if(key == keyboard.Key.f9): # for save file to txt
+        print('good')
+        keyboards = Controller()
+        with keyboards.pressed(Key.ctrl.value):
+            keyboards.press('c')
+            keyboards.release('c')
+        time.sleep (0.35)
+        try:
+            s = pyperclip.paste().replace('\n', '').replace('\r', '')   
+            lang = translator.detect(s).lang
+            speak(s,language=lang)
+            print(s)
+            trans = translator.translate(s,dest="zh-tw").text #dest #lang_tgt
+            time.sleep (0.4)
+            more_lines = ['',s+" "+trans]
+            with open('vocabulary.txt', 'a') as f:
+                f.writelines('\n'.join(more_lines))
+            print('<ctrl>+<shift> pressed')
+            time.sleep (0.35)
+        except Exception as e:
+            print(e)
+    if(key == keyboard.Key.f6 ): #display a window and speak
+        print('good')
+        
+        keyboards = Controller()
+        with keyboards.pressed(Key.ctrl.value):
+            keyboards.press('c')
+            keyboards.release('c')
+        time.sleep (0.15)
+        
+        try:
+            s = pyperclip.paste()
+            s = s.replace('\n', '').replace('\r', '')
+            lang = translator.detect(s).lang
             trans = translator.translate(s,dest="zh-tw").text #dest #lang_tgt
             time.sleep (0.25)
             display_word(trans) 
+            speak(s,language=lang)
+        
+        except Exception as e:
+            print(e)
+    if(key == keyboard.Key.f8): #display a window and speak
+        print('good')
+        
+        keyboards = Controller()
+        with keyboards.pressed(Key.ctrl.value):
+            keyboards.press('c')
+            keyboards.release('c')
+        time.sleep (0.15)
+        
+        try:
+            s = pyperclip.paste()
+            s = s.replace('\n', '').replace('\r', '')
+            lang = translator.detect(s).lang
+            wiki = wikipedia.summary(s)
+            print('wiki',wiki)
+            pyperclip.copy(s+'\n'+wiki)
+            time.sleep (0.25)
+            display_word(wiki,lang) 
             speak(s,language=lang)
         
         except Exception as e:
@@ -159,11 +211,11 @@ def on_release(key): # detect release of keyboard
             keyboards.press('c')
             keyboards.release('c')
         time.sleep (0.15)
-        s = pyperclip.paste()
-        s = s.replace('\n', '').replace('\r', '')
-        lang = translator.detect(s).lang
-        print(s)
         try:
+            s = pyperclip.paste()
+            s = s.replace('\n', '').replace('\r', '')
+            lang = translator.detect(s).lang
+            print(s) 
             trans = translator.translate(s,dest="zh-tw").text #dest #lang_tgt
             time.sleep (0.25)
             display_word(trans) 

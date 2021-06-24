@@ -6,3 +6,5 @@ problems 問題
 Reconstruction and Simulation of NeocorticalMicrocircuitry 新皮質微電路的重建與仿真
 Computational models 計算模型
 printed  打印
+spike 長釘
+engine  引擎
