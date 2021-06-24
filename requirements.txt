@@ -4,3 +4,4 @@ googletrans==4.0.0rc1
 pyperclip
 gTTS==2.2.3
 playsound
+wikipedia
