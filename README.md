@@ -6,8 +6,31 @@
 * 可用於迅速查詢論文單字、外文小說的翻譯/維基百科定義，不拖累閱讀速度
 * 一鍵製作txt單字本，包含中文以及英文，用於後續單字複習
 * 如果好用請在右上方給一個star，非常感謝XD
-### 更新
-* wiki查詢單詞定義，可用來查詢專有名詞之定義並顯示在視窗上、複製在剪貼簿中
+### DEMO 
+<table>
+  <tr>
+    <td align="center"> F1 視窗顯示</td>
+     <td align="center">F2 插入顯示</td>
+  </tr>
+  <tr>
+  <td align="center"><img src="https://user-images.githubusercontent.com/29053630/124051289-c73e8680-da4e-11eb-9886-0b1b0fbadc64.gif" width="6000">
+  <td align="center"><img src="https://user-images.githubusercontent.com/29053630/124052280-b727a680-da50-11eb-9366-34f79be02118.gif" width="6000">
+  </tr>
+ </table>
+ 
+<table>
+  <tr>
+    <td align="center"> F8 Wiki定義</td>
+     <td align="center">F9 製作單字本</td>
+  </tr>
+  <tr>
+    <td style="text-align: center; vertical-align: middle;"><img src="https://user-images.githubusercontent.com/29053630/124051451-1edcf200-da4f-11eb-9106-9cad426d3a47.gif" width="600"/>
+    <td style="text-align: center; vertical-align: middle;"><img src="https://user-images.githubusercontent.com/29053630/124051457-200e1f00-da4f-11eb-9a43-a08be8e2205b.gif" width="600"/>
+  </tr>
+ </table>
+ 
+
+
 # 安裝方法 
 ### Win 10
 ##### 方法一、 下載程式後並解壓縮，打開dist/pdf2.exe後即可以直接運行
