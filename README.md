@@ -10,10 +10,9 @@ https://user-images.githubusercontent.com/29053630/126666340-3021d788-ee8f-4dbc-
 
 # 安裝方法 
 ### Win 10
-##### 方法一、 下載程式後並解壓縮，打開dist/my_class.exe後即可以直接運行
-##### 方法二、 於anaconda建立python 3.7環境，在下載資料夾輸入 pip install -r requirements.txt，運行pdf2.py
-### Mac/Linux
-##### 方法一、 於anaconda建立python 3.7環境，在下載資料夾輸入 pip install -r requirements.txt，運行pdf2.py(需修改Key，比如將crtl 換到 cmd等等)
+##### 法一、下載程式後解壓縮，打開dist/my_class.exe後即可以直接運行
+### Mac/Linux/Win 10
+##### 法二、於anaconda建立python 3.7環境，在下載資料夾輸入 pip install -r requirements.txt，運行pdf2.py(需修改Key，比如將crtl 換到 cmd等等)
 # 使用方法
 ##### 一、 選擇學期後，可以針對1.開課的學院/學系 2.體育課 3.學程課 4.通識課 做一次性的選擇(選擇為聯集)
 ##### 二、 針對課程關鍵詞，建立在上方的課程中篩選出含有此關鍵詞的課程
