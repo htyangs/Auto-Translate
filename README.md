@@ -7,7 +7,7 @@
 ### DEMO 
 
 
-<img src="https://user-images.githubusercontent.com/29053630/126669288-f5cc58b6-c458-4889-a954-b0af561df178.gif" width="250" height="250"/>
+<img src="https://user-images.githubusercontent.com/29053630/126669288-f5cc58b6-c458-4889-a954-b0af561df178.gif" width="600" height="500"/>
 # 安裝方法 
 ### Win 10
 ##### 法一、下載程式後解壓縮，打開dist/my_class.exe後即可以直接運行
