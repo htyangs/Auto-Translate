@@ -6,7 +6,7 @@
 * 如果好用請在右上方給一個star，非常感謝~
 ### DEMO 
 
-https://user-images.githubusercontent.com/29053630/126666340-3021d788-ee8f-4dbc-bc37-eee54a6467ae.mp4
+![2021-07-22 23-43-50](https://user-images.githubusercontent.com/29053630/126669288-f5cc58b6-c458-4889-a954-b0af561df178.gif)
 
 # 安裝方法 
 ### Win 10
