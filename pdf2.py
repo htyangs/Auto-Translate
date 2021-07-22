@@ -198,7 +198,7 @@ def on_release(key): # detect release of keyboard
             print('wiki',wiki)
             pyperclip.copy(s+'\n'+wiki)
             time.sleep (0.25)
-            display_word(wiki,lang) 
+            display_word(wiki,'en') 
             speak(s,language=lang)
         
         except Exception as e:
