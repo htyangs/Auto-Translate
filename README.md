@@ -6,8 +6,8 @@
 * 如果好用請在右上方給一個star，非常感謝~
 ### DEMO 
 
-![2021-07-22 23-43-50](https://user-images.githubusercontent.com/29053630/126669288-f5cc58b6-c458-4889-a954-b0af561df178.gif)
 
+<img src="https://user-images.githubusercontent.com/29053630/126669288-f5cc58b6-c458-4889-a954-b0af561df178.gif" width="250" height="250"/>
 # 安裝方法 
 ### Win 10
 ##### 法一、下載程式後解壓縮，打開dist/my_class.exe後即可以直接運行
