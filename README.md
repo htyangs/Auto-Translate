@@ -1,3 +1,7 @@
+# Auto-Translate
+### Automatically translate English(or any language) into Chinese, with .exe package running on Windows directly and .py file.
+### Available in all kinds of file Ex: pdf, word, txt, browser
+### Check the definition of WIKI
 
 # 即時翻譯 (一鍵查詢定義、插入單字、製作單字本)
 ### 特點
@@ -54,6 +58,4 @@
 # 自行修改方法
 * 自定義快速按鍵 : 於pdf2.py檔案，修改key == keyboard.Key.f1即可以修改快捷鍵
 * 軟體打包成.exe : 利用pyinstaller對pdf2.py打包即可以形成.exe檔案 
-# Auto-Translate
-### Automatically translate English into Chinese, with .exe package running on Windows directly and .py file.
-### Available in all kinds of file Ex: pdf, word, txt, browser
+
